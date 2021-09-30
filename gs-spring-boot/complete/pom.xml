@@ -48,15 +48,15 @@
         <version>2.1.0</version>  
         <configuration> 
           <schemaVersion>v2</schemaVersion>  
-          <subscriptionId>ec488637-a3fa-4245-8423-201d506423b2</subscriptionId>  
-          <resourceGroup>Libby-LibraryManagementSystem</resourceGroup>  
-          <appName>libby-backend</appName>  
-          <pricingTier>B1</pricingTier>  
+          <subscriptionId>511235a9-1907-41f1-b32f-27948e2a86be</subscriptionId>  
+          <resourceGroup>rg-fsapps-ngt</resourceGroup>  
+          <appName>libmansys-backend</appName>  
+          <pricingTier>F1</pricingTier>  
           <region>centralus</region>  
-          <appServicePlanName>ASP-LibbyLibraryManagementSystem-aa91</appServicePlanName>  
-          <appServicePlanResourceGroup>Libby-LibraryManagementSystem</appServicePlanResourceGroup>  
+          <appServicePlanName>ASP-rgfsappsngt-baa5</appServicePlanName>  
+          <appServicePlanResourceGroup>rg-fsapps-ngt</appServicePlanResourceGroup>  
           <runtime> 
-            <os>Windows</os>  
+            <os>Linux</os>  
             <javaVersion>Java 8</javaVersion>  
             <webContainer>Java SE</webContainer> 
           </runtime>  
