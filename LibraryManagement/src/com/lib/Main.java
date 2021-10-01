@@ -39,48 +39,76 @@ public class Main {
                     ", Author: " + entry.getValue().getAuthor() + ", Category: " + entry.getValue().getCategory());
         }
 
-        //Next they can select the book to hold onto, set a due date...
-        System.out.print("\n Choose which book you would like to check out by entering the book number: ");
-        int bookNum = reader.nextInt();
-
-        //find the book using bookNum, set the due date, and then remove the book from library
-        Books newBook = bookMap.get(bookNum);
-        newBook.setDate(1);
-        newAccount.addBookToList(bookNum, newBook);
-        bookMap.remove(bookNum);
+        
+        //added exception handling code
+        boolean valid = false;
+        do {
+        	 //Next they can select the book to hold onto, set a due date...
+            System.out.print("\n Choose which book you would like to check out by entering the book number: ");
+            int bookNum = reader.nextInt();
+            
+        	try {
+                //find the book using bookNum, set the due date, and then remove the book from library
+        		Books newBook = bookMap.get(bookNum);
+        		newBook.setDate(1);
+        		newAccount.addBookToList(bookNum, newBook);
+        		bookMap.remove(bookNum);
+        		valid = true;
+        	}
+        
+        	catch (NullPointerException e){
+        		System.out.println("Invalid book, try again.");
+        		valid = false;
+        	}
+        } while(!valid);
+        
 
         //checking if the borrowing of book works correctly
         System.out.println("Checking the library: " + bookMap);
         newAccount.getBooksList();
 
-        System.out.print("Enter 1 if you want to return a book, 0 if you are finished.");
-        int returning = reader.nextInt();
-        switch(returning){
-            case 0:
-                System.out.println("ALl done.");
+       
+        
+        valid = false;
+        while(!valid) {
+        	
+        	 //getting user input
+            System.out.print("Enter 1 if you want to return a book, 0 if you are finished.");
+            int returning = reader.nextInt();
+            
+        	switch(returning){
+            	case 0:
+            		System.out.println("All done.");
+            		valid = true;
+            		
+            		break;
+            	case 1:
+            		//return the book
+            		System.out.println("--Returning Book--");
+            		System.out.println("Here is a list of available books you can return.");
+            		newAccount.getBooksList();
 
-                break;
-            case 1:
-                //return the book
-                System.out.println("--Returning Book--");
-                System.out.println("Here is a list of available books you can return.");
-                newAccount.getBooksList();
+            		//needs to select which book user wants to return. so that's why bookList needs to be a map
+            		System.out.print("\n Choose which book you would like to return by entering the book number: ");
+            		int returnNum = reader.nextInt();
+            		Books returnBook = newAccount.booksList.get(returnNum);
+            		returnBook.setDate();
+            		bookMap.put(returnNum, returnBook);
+            		newAccount.booksList.remove(returnNum);
+            		valid = true;
+            		
+            		break;
+            	default:
+            		System.out.println("Please enter a valid number");
+            		valid = false;
+            		continue;
 
-                //needs to select which book user wants to return. so that's why bookList needs to be a map
-                System.out.print("\n Choose which book you would like to return by entering the book number: ");
-                int returnNum = reader.nextInt();
-                Books returnBook = newAccount.booksList.get(returnNum);
-                returnBook.setDate();
-                bookMap.put(returnNum, returnBook);
-                newAccount.booksList.remove(returnNum);
-
-                break;
-            default:
-
+        	}
         }
-
+        
         //Checking if returning the book works correctly
         System.out.println("Checking the library: " + bookMap);
         newAccount.getBooksList();
+        reader.close();
     }
 }
