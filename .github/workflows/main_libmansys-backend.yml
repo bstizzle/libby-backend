@@ -23,7 +23,7 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-        working-directory: /gs-spring-boot/complete
+        working-directory: ./gs-spring-boot/complete
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
