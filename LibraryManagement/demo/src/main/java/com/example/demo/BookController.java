@@ -15,18 +15,18 @@ public class BookController {
 	}
 	
 	//Get a book
-	@GetMapping(path="/{id}")
+	@GetMapping(path="/books/{id}")
 	public @ResponseBody Optional<Book> getBookById(@PathVariable(name = "id") Integer id) {
 		return bookRepo.findById(id);
 	}
 	
 	//Get all books
-	@GetMapping(path="/all")
+	@GetMapping(path="/books")
 	public Iterable<Book> getBooks() {
 		return bookRepo.findAll();
 	}
 	
-	@PostMapping(path="/add") 
+	@PostMapping(path="/books") 
 	@ResponseStatus(HttpStatus.CREATED)
 	public Book createBook(@RequestBody Book b) {
 		return bookRepo.save(b);
