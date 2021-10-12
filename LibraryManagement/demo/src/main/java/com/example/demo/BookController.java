@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("https://libmansys.azurewebsites.net/")
 @RequestMapping
 public class BookController {
 	private final BookRepository bookRepo;
